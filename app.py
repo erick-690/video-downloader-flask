@@ -80,12 +80,14 @@ def download_video():
 
     if __name__ == '__main__':
     # Use Gunicorn em produção (se necessário), Werkzeug localmente
-    if os.environ.get('FLASK_ENV') == 'production':
+    # Estas duas linhas abaixo devem estar identadas (4 espaços, geralmente)
+    if os.environ.get('FLASK_ENV') == 'production': # <--- Esta linha precisa de indentação!
+        # Este bloco precisa de MAIS indentação (8 espaços, geralmente)
         from gunicorn.app.wsgiapp import run
         run()
     else:
+        # Este bloco também precisa de MAIS indentação (8 espaços, geralmente)
         app.run(debug=True)
-
 
 @app.route('/')
 def index():
