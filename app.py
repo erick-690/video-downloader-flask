@@ -77,6 +77,16 @@ def download_video():
     except Exception as e:
         return jsonify({'error': f'Ocorreu um erro inesperado no servidor: {str(e)}'}), 500
 
+
+    if __name__ == '__main__':
+    # Use Gunicorn em produção (se necessário), Werkzeug localmente
+    if os.environ.get('FLASK_ENV') == 'production':
+        from gunicorn.app.wsgiapp import run
+        run()
+    else:
+        app.run(debug=True)
+
+
 @app.route('/')
 def index():
     return app.send_static_file('index.html')

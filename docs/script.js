@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageDiv = document.getElementById('message');
     const loadingDiv = document.getElementById('loading');
 
+    // URL do seu backend hospedado no Render.com
+    // Lembre-se de substituir pela SUA URL real do Render.com
+    const BACKEND_URL = 'https://meu-baixador-de-videos.onrender.com'; // <--- MUDE AQUI!
+
     downloadButton.addEventListener('click', async () => {
         const videoLink = videoLinkInput.value.trim();
         messageDiv.textContent = '';
@@ -18,8 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingDiv.style.display = 'block';
 
         try {
-            // A requisição POST para o backend
-            const response = await fetch('/download-video', {
+            const response = await fetch(`${BACKEND_URL}/download-video`, { // <--- USE A VARIÁVEL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -28,15 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                // Se o backend retornou um arquivo, o navegador vai lidar com o download automaticamente.
-                // Não é necessário ler a resposta aqui se o objetivo é um download de arquivo.
                 messageDiv.textContent = 'Download iniciado!';
                 messageDiv.classList.add('success');
+                // O navegador lida com o download do arquivo enviado pelo backend
             } else {
-                // Se o backend retornou um erro (ex: 400, 500)
-                const errorData = await response.json(); // Tenta ler a resposta JSON de erro do backend
+                const errorData = await response.json();
                 messageDiv.textContent = `Erro: ${errorData.error || 'Ocorreu um erro ao processar o vídeo.'}`;
-                messageDiv.classList.add('error'); // Você pode adicionar uma classe 'error' no CSS
+                messageDiv.classList.add('error');
             }
         } catch (error) {
             console.error('Erro na requisição Fetch:', error);
