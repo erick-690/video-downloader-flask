@@ -7,7 +7,7 @@ from flask_cors import CORS
 import yt_dlp
 
 # Configuração básica de logging para ver mensagens no console do Render
-logging.basicConfig(level=logging.INFO) # Mude para logging.DEBUG para mais detalhes
+logging.basicConfig(level=logging.DEBUG) # Mude para logging.DEBUG para mais detalhes
 
 # Informe ao Flask onde estão seus arquivos estáticos
 # A pasta 'docs' deve estar no mesmo nível do app.py
