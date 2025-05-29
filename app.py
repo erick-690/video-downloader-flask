@@ -4,7 +4,7 @@ import yt_dlp
 import os
 import uuid
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='docs')
 CORS(app) # Habilita CORS para todas as rotas (necessário se frontend e backend em portas diferentes)
 
 DOWNLOAD_FOLDER = 'downloads'
