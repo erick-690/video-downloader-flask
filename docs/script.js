@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // URL do seu backend hospedado no Render.com
     // Lembre-se de substituir pela SUA URL real do Render.com
-    const BACKEND_URL = 'https://meu-baixador-de-videos.onrender.com'; // <--- MUDE AQUI!
+    const BACKEND_URL = 'https://video-downloader-flask.onrender.com'; // <--- MUDE AQUI!
 
     downloadButton.addEventListener('click', async () => {
         const videoLink = videoLinkInput.value.trim();
