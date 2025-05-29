@@ -32,8 +32,13 @@ def download_video():
 
         # Obtém o conteúdo dos cookies da variável de ambiente
         cookies_content = os.environ.get('YTDL_COOKIES')
-
-        # Se houver cookies, crie um arquivo temporário para eles
+          # --- ADICIONE ESTA LINHA PARA DEPURAR ---
+        if cookies_content:
+            app.logger.debug(f"Primeiras 200 caracteres dos cookies: {cookies_content[:200]}")
+        else:
+            app.logger.debug("Variável YTDL_COOKIES está vazia ou não definida.")
+            # --- REMOVA ESTA LINHA DEPOIS DA DEPURAÇÃO ---
+            # Se houver cookies, crie um arquivo temporário para eles
         cookie_file_path = None
         if cookies_content:
             cookie_file_path = os.path.join(DOWNLOAD_FOLDER, f'{uuid.uuid4()}_cookies.txt')
