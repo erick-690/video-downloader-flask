@@ -32,7 +32,7 @@ def download_video():
 
         # Obtém o conteúdo dos cookies da variável de ambiente
         cookies_content = os.environ.get('YTDL_COOKIES')
-            # Se houver cookies, crie um arquivo temporário para eles
+        # Se houver cookies, crie um arquivo temporário para eles
         cookie_file_path = None
         if cookies_content:
             cookie_file_path = os.path.join(DOWNLOAD_FOLDER, f'{uuid.uuid4()}_cookies.txt')
@@ -77,7 +77,10 @@ def download_video():
                     download_filename = download_filename[:145] + '.' + info['ext']
 
         if file_path and os.path.exists(file_path):
-            app.logger.info(f"Download concluído. Enviando arquivo: {download_filename}")
+            # ADICIONEI ESTAS DUAS LINHAS AQUI
+            file_size = os.path.getsize(file_path)
+            app.logger.info(f"Download concluído. Enviando arquivo: {download_filename} (Tamanho: {file_size} bytes)")
+            
             mimetype = 'video/mp4'
             return send_file(
                 file_path,
